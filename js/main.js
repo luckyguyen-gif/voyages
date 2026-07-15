@@ -75,18 +75,31 @@
         }),
     });
 
-    TRIPS.forEach((trip) => {
-      const marker = L.marker([trip.lat, trip.lng], {
-        icon: buildTripIcon(trip),
-      });
-
-      marker.on("click", () => selectTrip(trip.id, { flyTo: true }));
-
-      markersById[trip.id] = marker;
-      markerClusterGroup.addLayer(marker);
-    });
+    TRIPS.forEach((trip) => addTripMarker(trip));
 
     map.addLayer(markerClusterGroup);
+
+    // Click vào vùng trống của bản đồ (không phải ghim) — dùng cho chế độ quản trị.
+    map.on("click", (e) => {
+      window.dispatchEvent(new CustomEvent("voyages:map-click", { detail: { latlng: e.latlng } }));
+    });
+
+    window.dispatchEvent(new CustomEvent("voyages:map-ready", { detail: { map } }));
+  }
+
+  function addTripMarker(trip) {
+    const marker = L.marker([trip.lat, trip.lng], {
+      icon: buildTripIcon(trip),
+    });
+
+    marker.on("click", (e) => {
+      L.DomEvent.stopPropagation(e); // tránh click ghim làm nổ luôn sự kiện click bản đồ
+      selectTrip(trip.id, { flyTo: true });
+    });
+
+    markersById[trip.id] = marker;
+    markerClusterGroup.addLayer(marker);
+    return marker;
   }
 
   function buildTripIcon(trip) {
@@ -183,6 +196,8 @@
       lightbox.destroy();
     }
     lightbox = GLightbox({ selector: ".glightbox" });
+
+    window.dispatchEvent(new CustomEvent("voyages:album-rendered", { detail: { trip, container } }));
   }
 
   /* ------------------------------ Song ngữ ------------------------------ */
@@ -228,4 +243,22 @@
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
   }
+
+  /* ------------------------------ API công khai cho js/admin.js ------------------------------ */
+
+  window.VoyagesApp = {
+    getTrips: () => TRIPS,
+    getCurrentLang: () => currentLang,
+    getMap: () => map,
+    selectTrip,
+    renderTripList,
+    renderAlbum,
+    refreshMarkerIcons,
+    escapeHtml,
+    addTrip(trip) {
+      TRIPS.push(trip);
+      addTripMarker(trip);
+      renderTripList();
+    },
+  };
 })();
