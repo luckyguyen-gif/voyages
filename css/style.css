@@ -470,3 +470,254 @@ main {
     font-size: 1rem;
   }
 }
+
+/* ---------------------------------- Quản trị (admin) ---------------------------------- */
+
+.admin-entry {
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.admin-entry:hover {
+  opacity: 1;
+  color: var(--teal);
+}
+
+body.admin-mode .admin-entry {
+  opacity: 0.85;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.admin-map-hint {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text-dark);
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  z-index: 700;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.admin-add-photo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  border: 1px solid var(--teal);
+  background: var(--teal-light);
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.admin-add-photo-btn:hover {
+  background: var(--teal);
+  color: var(--white);
+}
+
+/* Modal dùng chung cho đăng nhập / trạng thái / form tạo chuyến đi */
+
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 52, 44, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+}
+
+.admin-modal-overlay[hidden] {
+  display: none;
+}
+
+.admin-modal {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 40px rgba(4, 52, 44, 0.25);
+}
+
+.admin-modal h3 {
+  color: var(--text-dark);
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.admin-modal p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 14px;
+}
+
+.admin-modal label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.admin-modal input,
+.admin-modal textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--text-dark);
+  background: var(--white);
+}
+
+.admin-modal input:focus,
+.admin-modal textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.admin-modal textarea {
+  resize: vertical;
+}
+
+.admin-form-coords {
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.admin-modal-error {
+  background: #FBEBE3;
+  color: #B0402A;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+.admin-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--text-dark);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-muted);
+}
+
+.btn-danger {
+  background: #FBEBE3;
+  color: #B0402A;
+}
+
+.btn-danger:hover {
+  opacity: 0.85;
+}
+
+/* Toast: tiến trình tải ảnh / thông báo kết quả */
+
+.admin-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  min-width: 280px;
+  max-width: 90vw;
+  background: var(--text-dark);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  box-shadow: 0 12px 32px rgba(4, 52, 44, 0.3);
+  z-index: 2100;
+}
+
+.admin-toast-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.admin-toast-bar {
+  margin-top: 10px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.admin-toast-bar-fill {
+  height: 100%;
+  background: var(--teal);
+  transition: width 0.2s ease;
+}
+
+.admin-toast--success {
+  background: var(--teal);
+}
+
+.admin-toast--error {
+  background: #B0402A;
+}
+
+@media (max-width: 480px) {
+  .admin-modal {
+    padding: 20px;
+  }
+}
