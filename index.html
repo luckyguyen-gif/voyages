@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="siteTitle">Hành trình của Lucky</title>
+  <meta name="description" content="Blog du lịch dạng bản đồ tương tác - Hành trình của Lucky" />
+
+  <!-- Leaflet (bản đồ) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Leaflet.markercluster (gom ghim khi thu nhỏ) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <!-- GLightbox (xem ảnh phóng to) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo" data-i18n="siteTitle">Hành trình của Lucky</div>
+
+    <nav class="main-nav">
+      <a href="#map-section" data-i18n="navMap">Bản đồ</a>
+      <a href="#album-section" data-i18n="navAlbum">Album</a>
+      <a href="#about-section" data-i18n="navAbout">Về mình</a>
+    </nav>
+
+    <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Đổi ngôn ngữ / Changer de langue">
+      <span class="lang-vi">VI</span><span class="lang-sep">/</span><span class="lang-fr">FR</span>
+    </button>
+
+    <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Mở menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <section id="map-section" class="explorer">
+      <aside class="trip-list" id="trip-list" aria-label="Danh sách chuyến đi">
+        <!-- Thẻ chuyến đi được JS chèn vào đây, dữ liệu lấy từ data/trips.js -->
+      </aside>
+
+      <div class="map-wrap">
+        <div id="map"></div>
+      </div>
+    </section>
+
+    <section id="album-section" class="album-section">
+      <div id="album-content" class="album-content">
+        <div class="album-placeholder">
+          <h2 data-i18n="albumPlaceholderTitle">Chọn một chuyến đi</h2>
+          <p data-i18n="albumPlaceholderText">Bấm vào một ghim trên bản đồ hoặc một thẻ bên trái để xem album ảnh.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-section" class="about-section">
+      <h2 data-i18n="aboutTitle">Về mình</h2>
+      <p data-i18n="aboutText">
+        Xin chào, mình là Lucky. Đây là nơi mình lưu lại những chuyến đi, những bức ảnh và câu chuyện nhỏ trên đường.
+        Cảm ơn bạn đã ghé thăm hành trình của mình!
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="current-year"></span> <span data-i18n="footerText">Hành trình của Lucky</span></p>
+  </footer>
+
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <!-- GLightbox -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
+
+  <!-- Dữ liệu & logic của trang -->
+  <script src="data/trips.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
