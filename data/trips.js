@@ -14,6 +14,9 @@
  *   description : { vi, fr } đoạn kể chuyện ngắn, song ngữ
  *   photos      : danh sách tên file ảnh, đặt trong thư mục photos/<id>/
  *                 (thay các file .svg placeholder này bằng ảnh .jpg/.png thật)
+ *
+ * File này cũng được chỉnh sửa tự động bởi chế độ Quản trị (js/admin.js) khi
+ * bạn thêm ảnh hoặc tạo chuyến đi mới từ giao diện web.
  */
 
 const TRIPS = [
@@ -28,7 +31,6 @@ const TRIPS = [
       vi: "Paris đón mình bằng những buổi sáng sương mờ bên sông Seine và mùi bánh mì nướng thơm lừng góc phố. Từ tháp Eiffel lấp lánh về đêm đến những con hẻm nhỏ ở Montmartre, mỗi bước chân đều như một trang nhật ký lãng mạn.",
       fr: "Paris m'a accueilli avec des matins brumeux le long de la Seine et l'odeur du pain frais à chaque coin de rue. De la tour Eiffel scintillante la nuit aux ruelles de Montmartre, chaque pas ressemblait à une page de journal romantique.",
     },
-    // Ảnh mẫu: các ô màu placeholder (.svg). Thay bằng ảnh thật, ví dụ: "1.jpg", "2.jpg"...
     photos: ["1.svg", "2.svg", "3.svg", "4.svg", "5.svg", "6.svg"],
   },
   {
@@ -61,13 +63,26 @@ const TRIPS = [
     id: "bali",
     name: "Bali",
     country: { vi: "Indonesia", fr: "Indonésie" },
-    lat: -8.6500,
-    lng: 115.1900,
+    lat: -8.65,
+    lng: 115.19,
     date: { vi: "Tháng 1, 2024", fr: "Janvier 2024" },
     description: {
       vi: "Bali là những ruộng bậc thang xanh mướt ở Ubud, tiếng sóng vỗ ở Uluwatu và các đền thờ cổ kính giữa làn khói trầm hương. Mình học cách sống chậm lại, đón bình minh trên núi lửa và tận hưởng từng khoảnh khắc yên bình.",
       fr: "Bali, ce sont les rizières en terrasses verdoyantes d'Ubud, le bruit des vagues à Uluwatu et des temples anciens enveloppés de fumée d'encens. J'ai appris à ralentir, à admirer le lever du soleil sur un volcan et à savourer chaque instant de paix.",
     },
     photos: ["1.svg", "2.svg", "3.svg", "4.svg", "5.svg", "6.svg", "7.svg", "8.svg"],
+  },
+  {
+    id: "london",
+    name: "London",
+    country: { vi: "London", fr: "Londre" },
+    lat: 51.5502,
+    lng: -0.0247,
+    date: { vi: "Tháng 4, 2026", fr: "Avril, 2026" },
+    description: {
+      vi: "",
+      fr: "",
+    },
+    photos: [],
   },
 ];
